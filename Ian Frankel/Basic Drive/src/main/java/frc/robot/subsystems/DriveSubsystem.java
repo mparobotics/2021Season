@@ -32,7 +32,9 @@ public class DriveSubsystem extends SubsystemBase {
     
   //add teleop() method  
   public void teleop(double move, double turn ) {
-
+    //speed reducer
+    move = move / 2;
+    turn = turn / 2;
     drive.arcadeDrive(move, turn);
   }
 
