@@ -31,11 +31,12 @@ public class DriveSubsystem extends SubsystemBase {
 
     
   //add teleop() method  
-  public void teleop(double move, double turn ) {
+  public void teleop(double leftStick, double rightStick ) {
     //speed reducer
-    move = move / 2;
-    turn = turn / 2;
-    drive.arcadeDrive(move, turn);
+    leftStick = leftStick / 1.5;
+    rightStick = rightStick / 1.5;
+    //drive command
+    drive.tankDrive(leftStick, rightStick);
   }
 
 

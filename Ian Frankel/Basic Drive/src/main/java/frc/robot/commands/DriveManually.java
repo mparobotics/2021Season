@@ -4,10 +4,11 @@
 
 package frc.robot.commands;
 
-import frc.robot.ConstantsMap;
+
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.Container;
+
 
 public class DriveManually extends CommandBase {
   /** Creates a new DriveManually. */
@@ -22,10 +23,11 @@ public class DriveManually extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
+  //actually runs subsystem
   public void execute() {
-    double move = -Robot.m_robotContainer.stick.getY( );
-    double turn = Robot.m_robotContainer.stick.getX( );
-    Robot.driveSubsystem.teleop(move, turn);
+    double leftStick = -Robot.m_robotContainer.m_driverController.getY(Hand.kLeft);
+    double rightStick = Robot.m_robotContainer.m_driverController.getY(Hand.kRight);
+    Robot.driveSubsystem.teleop(leftStick, rightStick);
   }
 
   // Called once the command end s or is interrupted.
