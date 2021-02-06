@@ -3,7 +3,9 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.subsystems;
+
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,14 +19,13 @@ public class DriveSubsystem extends SubsystemBase {
   public WPI_TalonSRX rightFront = new WPI_TalonSRX(ConstantsMap.rightFrontPort);
   public WPI_TalonSRX rightBack = new WPI_TalonSRX(ConstantsMap.rightBackPort);
 
-   
   //instantiate a new DiferentialDrive object
   //assign motor controlers to differentialDrive
   public DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront); 
 
   //create constructor function 
   public DriveSubsystem() {
-      //point back to front
+      //point back motors to do the same as the front motors
     leftBack.follow(leftFront);
     rightBack.follow(rightFront);  
   }
@@ -33,11 +34,17 @@ public class DriveSubsystem extends SubsystemBase {
   //add teleop() method  
   public void teleop(double leftStick, double rightStick ) {
     //speed reducer
-    leftStick = leftStick / 1.5;
-    rightStick = rightStick / 1.5;
+    leftStick = leftStick / 1.75;
+    rightStick = rightStick / 1.75;
     //drive command
     drive.tankDrive(leftStick, rightStick);
   }
+
+  public void goFoward(double leftStick, double turningValue) {
+     drive.arcadeDrive(leftStick, turningValue);
+
+  }
+
 
 
   
