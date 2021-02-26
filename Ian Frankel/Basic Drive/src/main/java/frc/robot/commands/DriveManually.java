@@ -26,7 +26,7 @@ public class DriveManually extends CommandBase {
   //actually runs subsystem
   public void execute() {
     double leftStick = -Robot.m_robotContainer.m_driverController.getY(Hand.kLeft);
-    double rightStick = Robot.m_robotContainer.m_driverController.getY(Hand.kRight);
+    double rightStick = -Robot.m_robotContainer.m_driverController.getY(Hand.kRight);
     Robot.driveSubsystem.teleop(leftStick, rightStick);
   }
 
