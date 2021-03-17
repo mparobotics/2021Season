@@ -4,9 +4,11 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.InvertType;
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
-
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.ConstantsMap;
@@ -14,28 +16,40 @@ import frc.robot.commands.DriveManually;
 
 public class DriveSubsystem extends SubsystemBase {
   //instantiate new motor control objects
-  public WPI_TalonSRX leftFront = new WPI_TalonSRX(ConstantsMap.leftFrontPort);
-  public WPI_TalonSRX leftBack = new WPI_TalonSRX(ConstantsMap.leftBackPort);
-  public WPI_TalonSRX rightFront = new WPI_TalonSRX(ConstantsMap.rightFrontPort);
-  public WPI_TalonSRX rightBack = new WPI_TalonSRX(ConstantsMap.rightBackPort);
+  private final WPI_TalonFX leftBack = new WPI_TalonFX(ConstantsMap.FALCON_BL_ID); 
+  private final WPI_TalonFX leftFront = new WPI_TalonFX(ConstantsMap.FALCON_FL_ID); 
+  private final WPI_TalonFX rightBack = new WPI_TalonFX(ConstantsMap.FALCON_BR_ID); 
+  private final WPI_TalonFX rightFront = new WPI_TalonFX(ConstantsMap.FALCON_FR_ID); 
 
+
+  private final SpeedControllerGroup SCG_R = new SpeedControllerGroup(rightFront, rightBack); 
+  private final SpeedControllerGroup SCG_L = new SpeedControllerGroup(leftFront, leftBack);   
   //instantiate a new DiferentialDrive object
   //assign motor controlers to differentialDrive
-  public DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront); 
+  private final DifferentialDrive drive = new DifferentialDrive(leftFront, rightFront);
 
   //create constructor function 
   public DriveSubsystem() {
       //point back motors to do the same as the front motors
-    leftBack.follow(leftFront);
-    rightBack.follow(rightFront);  
+      rightFront.setNeutralMode(NeutralMode.Brake);
+      leftFront.setNeutralMode(NeutralMode.Brake);
+      rightBack.setNeutralMode(NeutralMode.Brake);
+      leftBack.setNeutralMode(NeutralMode.Brake);
+      rightBack.follow(rightFront); //talonBR follows TalonFR
+      leftBack.follow(leftFront); //talonBL follows TalonFR 
+          //falconFR.setInverted(true); //set to invert falconFR.. CW/CCW.. Green = forward (motor led)
+      rightBack.setInverted(InvertType.FollowMaster); //matches whatever falconFR is
+
+    //falconFL.setInverted(true); //set to invert falconFL.. CW/CCW.. Green = foward (motor led)
+      leftBack.setInverted(InvertType.FollowMaster); //matches whatever falcon FL is
   }
 
     
   //add teleop() method  
   public void teleop(double leftStick, double rightStick ) {
     //speed reducer
-    leftStick = leftStick / 1.75;
-    rightStick = rightStick / 1.75;
+    leftStick = leftStick / 1.25;
+    rightStick = rightStick / 1.25;
     //drive command
     drive.tankDrive(leftStick, rightStick);
   }
