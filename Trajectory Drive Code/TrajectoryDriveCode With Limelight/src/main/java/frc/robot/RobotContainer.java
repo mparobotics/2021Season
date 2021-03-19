@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.List;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.GenericHID;
@@ -18,6 +19,7 @@ import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.geometry.Translation2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryConfig;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
@@ -62,7 +64,19 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     
     //LOAD A PATH FILE HERE
-    String trajectoryJSON = "paths/RedPath.wpilib.json";
+    double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
+    boolean PathToTake;
+    if (tv < 1) {
+      PathToTake = false;
+      
+        }
+        else {PathToTake = true;}
+    
+        SmartDashboard.putBoolean("limelight vision", PathToTake);
+
+
+    if (PathToTake = true){
+    String trajectoryJSON = "paths/BluePath.wpilib.json";
     Trajectory trajectory = new Trajectory();
     try {
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -70,29 +84,63 @@ public class RobotContainer {
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
     }
+    RamseteCommand command =
+    new RamseteCommand(
+        trajectory,
+        drive::getPose,
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(
+            DriveConstants.kS,
+            DriveConstants.kV,
+            DriveConstants.kA),
+        DriveConstants.kDriveKinematics,
+        drive::getWheelSpeeds,
+        new PIDController(DriveConstants.kP, 0, 0),
+        new PIDController(DriveConstants.kP, 0, 0),
+        // RamseteCommand passes volts to the callback
+        drive::tankDriveVolts,
+        drive);
+
+// Reset odometry to the starting pose of the trajectory.
+drive.resetOdometry(trajectory.getInitialPose());
+
+// Run path following command, then stop at the end.
+return command.andThen(() -> drive.tankDriveVolts(0, 0));
+  
+  
+  }
+    else {String trajectoryJSON = "paths/RedPath.wpilib.json";
+          Trajectory trajectory = new Trajectory();
+          try {
+          Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
+          trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
+          } catch (IOException ex) {
+          DriverStation.reportError("Unable to open trajectory: " + trajectoryJSON, ex.getStackTrace());
+    }            RamseteCommand command =
+    new RamseteCommand(
+        trajectory,
+        drive::getPose,
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(
+            DriveConstants.kS,
+            DriveConstants.kV,
+            DriveConstants.kA),
+        DriveConstants.kDriveKinematics,
+        drive::getWheelSpeeds,
+        new PIDController(DriveConstants.kP, 0, 0),
+        new PIDController(DriveConstants.kP, 0, 0),
+        // RamseteCommand passes volts to the callback
+        drive::tankDriveVolts,
+        drive);
+
+// Reset odometry to the starting pose of the trajectory.
+drive.resetOdometry(trajectory.getInitialPose());
+
+// Run path following command, then stop at the end.
+return command.andThen(() -> drive.tankDriveVolts(0, 0));}
+    
 //END OF LOADING PATH FILE
-            RamseteCommand command =
-            new RamseteCommand(
-                trajectory,
-                drive::getPose,
-                new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-                new SimpleMotorFeedforward(
-                    DriveConstants.kS,
-                    DriveConstants.kV,
-                    DriveConstants.kA),
-                DriveConstants.kDriveKinematics,
-                drive::getWheelSpeeds,
-                new PIDController(DriveConstants.kP, 0, 0),
-                new PIDController(DriveConstants.kP, 0, 0),
-                // RamseteCommand passes volts to the callback
-                drive::tankDriveVolts,
-                drive);
-    
-        // Reset odometry to the starting pose of the trajectory.
-        drive.resetOdometry(trajectory.getInitialPose());
-    
-        // Run path following command, then stop at the end.
-        return command.andThen(() -> drive.tankDriveVolts(0, 0));
+
     // An ExampleCommand will run in autonomous
   
   }
