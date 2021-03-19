@@ -27,7 +27,9 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.commands.IntakeBalls;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.QueueSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
 
@@ -40,6 +42,7 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final DriveTrain drive = new DriveTrain();
+  public QueueSubsystem queueSub     = new QueueSubsystem();
  
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -76,7 +79,7 @@ public class RobotContainer {
 
 
     if (PathToTake = true){
-    String trajectoryJSON = "paths/BluePath.wpilib.json";
+    String trajectoryJSON = "paths/RedPath.wpilib.json";
     Trajectory trajectory = new Trajectory();
     try {
       Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -109,7 +112,7 @@ return command.andThen(() -> drive.tankDriveVolts(0, 0));
   
   
   }
-    else {String trajectoryJSON = "paths/RedPath.wpilib.json";
+    else {String trajectoryJSON = "paths/BluePath.wpilib.json";
           Trajectory trajectory = new Trajectory();
           try {
           Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);
@@ -137,6 +140,7 @@ return command.andThen(() -> drive.tankDriveVolts(0, 0));
 drive.resetOdometry(trajectory.getInitialPose());
 
 // Run path following command, then stop at the end.
+
 return command.andThen(() -> drive.tankDriveVolts(0, 0));}
     
 //END OF LOADING PATH FILE

@@ -18,6 +18,24 @@ import edu.wpi.first.wpilibj.util.Units;
  * wherever the constants are needed, to reduce verbosity.
  */
 public final class Constants {
+
+
+  public final class QueueConstants {
+    public static final int INTAKE_RED_ID = 2;
+    public static final int INDEXER_RED_ID_1 = 16;
+    public static final int INDEXER_RED_ID_2 = 31;
+    public static final int INDEXER_BOTTOM_RED_ID = 20;
+    public static final int CONVEYOR_RED_ID_1 = 32;
+
+    public static final int LINEBREAK_TRANSMITTER_ID = 0;
+    public static final int LINEBREAK_RECIVER_ID = 1;
+   
+    public static final double INTAKE_SPEED = .5;
+    public static final double INDEXER_SPEED = .5;
+    public static final double INDEXER_BOTTOM_SPEED = .5;
+    public static final double CONVEYOR_SPEED = .25;
+}                   
+
 public static final class DriveConstants {
     public static final int LeftFront = 43;
     public static final int LeftRear = 42;
