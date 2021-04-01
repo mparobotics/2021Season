@@ -1,8 +1,6 @@
 package frc.robot.autocommands;
 
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.nio.file.Path;
 
 import edu.wpi.first.wpilibj.DriverStation;
@@ -36,17 +34,6 @@ public class RunBarrelRace extends SequentialCommandGroup {
             trajectory = TrajectoryUtil.fromPathweaverJson(trajectoryPath);
         } catch (IOException ex) {
             DriverStation.reportError("Unable to open trajectory: " + trajectoryfile, ex.getStackTrace());
-        }
-        
-        try {
-            trajectoryfile = myPathName + ".txt";
-            Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryfile);
-            FileWriter fileWriter = new FileWriter(trajectoryPath.toString());
-            PrintWriter printWriter = new PrintWriter(fileWriter);
-            printWriter.print(trajectory.toString());
-            printWriter.close();
-        } catch (IOException ex) {
-            DriverStation.reportError("Unable to write traj text: " + trajectoryfile, ex.getStackTrace());
         }
 
         drive.resetOdometry(trajectory.getInitialPose());
