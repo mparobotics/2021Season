@@ -78,6 +78,11 @@ DifferentialDriveOdometry odometry;
     drive.arcadeDrive(fwd, rot);
   }
 
+  public void setDriveSpeed_Arcade(double xSpeed, double zRotation) {
+
+    drive.arcadeDrive(xSpeed, zRotation);
+  }
+
   public void tankDriveVolts(double leftVolts, double rightVolts){
     leftSide.setVoltage(leftVolts);
     rightSide.setVoltage(rightVolts);
@@ -92,6 +97,10 @@ DifferentialDriveOdometry odometry;
   public double getAverageEncoderDistance(){
     return ((leftFront.getSelectedSensorPosition()+rightFront.getSelectedSensorPosition())/2.0)
     *DriveConstants.Conversion;
+  }
+
+  public double getLeftEncoderDistance() {
+    return ((leftFront.getSelectedSensorPosition()));
   }
 
   /**

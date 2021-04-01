@@ -11,16 +11,15 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants.DriveConstants;
-import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.DriveTrain;
 
 public class AutoCross extends CommandBase {
-  private DriveSubsystem m_driveSub;
+  private static DriveTrain m_driveSub;
 
   /**
    * Creates a new AutoDriveToWall.
    */
-  public AutoCross(DriveSubsystem driveSub) {
+  public AutoCross(DriveTrain driveSub) {
     m_driveSub = driveSub;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveSub);
@@ -30,9 +29,8 @@ public class AutoCross extends CommandBase {
   @Override
   public void initialize() {
     WPI_TalonFX leftFront = new WPI_TalonFX(DriveConstants.LeftFront);
-    while (leftFront.getSelectedSensorPosition() < 2500)
-    {
-        m_driveSub.setDriveSpeed_Arcade(1, 0);
+    while (leftFront.getSelectedSensorPosition() < 2500) {
+      m_driveSub.setDriveSpeed_Arcade(1, 0);
       }
     while (leftFront.getSelectedSensorPosition() > 0)
      {m_driveSub.setDriveSpeed_Arcade(-1, 0);}
@@ -63,6 +61,6 @@ public class AutoCross extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return m_driveSub.getAvgPosition() >= 5;
+    return false;
   }
 }

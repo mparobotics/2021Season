@@ -44,8 +44,7 @@ public class Robot extends TimedRobot {
   
 
 
-      autoSearch = new SequentialCommandGroup(
-      new AutoCross(m_robotContainer.driveSub), new AutoCommand());
+    
   
     navx.zeroYaw();
   }
@@ -77,11 +76,12 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     
-
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
         // schedule the autonomous command (example)
       new IntakeBalls(m_robotContainer.queueSub).schedule();
-      try{autoSearch.schedule();}
-      catch (Exception e) {System.out.println("FAILED TO MAKE COMMAND 10000");}
+      if (m_autonomousCommand != null) {
+        m_autonomousCommand.schedule();}
+      
       //new IntakeBalls(m_robotContainer.queueSub).schedule();;
     }
   
