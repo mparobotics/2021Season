@@ -19,9 +19,9 @@ public class RunGalSearchA extends SequentialCommandGroup {
     public RunGalSearchA(DriveTrain drive, QueueSubsystem queue) {
         addCommands(
                     //Deploy the arm
-                    new AutoCross(drive),
-                    new IntakeBalls(queue),
+                    new AutoCross(drive), //TODO FIX
                     new LimeLightSearch(),
+                    new ParallelCommandGroup(new IntakeBalls(queue)), //TODO FIX
                     //Run Selected Path
                     new RunPathA(drive)
                     );

@@ -24,7 +24,7 @@ public class RunPathB extends SequentialCommandGroup{
             //String myPathName = "";
             //String trajecotryfile = "";
 
-            String trajectoryJSON = "GalRedB.wpilib.json";
+            String trajectoryJSON = "GalBlueA.wpilib.json";
             Trajectory trajectory = new Trajectory();
             try {
             Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJSON);

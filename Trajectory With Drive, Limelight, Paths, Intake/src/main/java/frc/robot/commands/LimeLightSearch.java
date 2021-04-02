@@ -11,8 +11,10 @@ public class LimeLightSearch extends SequentialCommandGroup{
         double tv = NetworkTableInstance.getDefault().getTable("limelight").getEntry("tv").getDouble(0);
         //boolean PathToTake;
         if (tv <1) {
+            System.out.println("TV < 1");
             PathToTake = false;
         } else {
+            System.out.println("Tv > 1");
             PathToTake = true;
         }
 

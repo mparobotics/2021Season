@@ -30,10 +30,10 @@ public class AutoCross extends CommandBase {
   public void initialize() {
     WPI_TalonFX leftFront = new WPI_TalonFX(DriveConstants.LeftFront);
     while (leftFront.getSelectedSensorPosition() < 2500) {
-      m_driveSub.setDriveSpeed_Arcade(1, 0);
+      m_driveSub.setDriveSpeed_Arcade(1, 1);
       }
     while (leftFront.getSelectedSensorPosition() > 0)
-     {m_driveSub.setDriveSpeed_Arcade(-1, 0);}
+     {m_driveSub.setDriveSpeed_Arcade(-1, -1);}
    
      m_driveSub.setDriveSpeed_Arcade(0, 0);
 

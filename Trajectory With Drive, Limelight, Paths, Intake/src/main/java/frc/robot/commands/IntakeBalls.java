@@ -41,7 +41,7 @@ public class IntakeBalls extends CommandBase {
   @Override
   public void execute() {
     //contiues to take user input
-    if(!m_queue.lineBreakBroken()) {
+    /*if(!m_queue.lineBreakBroken()) {
       m_queue.stopConveyor();
       m_queue.stopIndexer();
       m_queue.stopIndexerBelt();
@@ -50,7 +50,7 @@ public class IntakeBalls extends CommandBase {
       m_queue.spinConveyor(-QueueConstants.CONVEYOR_SPEED);
     }
 
-    SmartDashboard.putBoolean("Linebreak Broken", m_queue.lineBreakBroken());
+    SmartDashboard.putBoolean("Linebreak Broken", m_queue.lineBreakBroken());*/
     }
 
 
@@ -58,9 +58,9 @@ public class IntakeBalls extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     //turns off queue
-    m_queue.stopIntake();
-    m_queue.stopIndexer();
-    m_queue.stopConveyor();
+    //m_queue.stopIntake();
+    //m_queue.stopIndexer();
+    //m_queue.stopConveyor();
   }
 
   // Returns true when the command should end.

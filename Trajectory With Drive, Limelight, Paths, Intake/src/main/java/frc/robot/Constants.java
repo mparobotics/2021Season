@@ -37,8 +37,8 @@ public final class Constants {
 }                   
 
 public static final class DriveConstants {
-  public static final int FALCON_FR_ID = 44;
-  public static final int FALCON_BR_ID = 41;
+  public static final int FALCON_FR_ID = 41;
+  public static final int FALCON_BR_ID = 44;
   public static final int FALCON_FL_ID = 43;
   public static final int FALCON_BL_ID = 42;
 

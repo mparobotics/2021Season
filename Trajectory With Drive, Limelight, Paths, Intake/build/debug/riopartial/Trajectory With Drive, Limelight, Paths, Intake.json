@@ -1,0 +1,9 @@
+[
+  {
+    "artifact": "frcJava (in project Trajectory With Drive, Limelight, Paths, Intake)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "Trajectory With Drive, Limelight, Paths, Intake",
+    "language": "java"
+  }
+]
