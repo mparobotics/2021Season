@@ -32,6 +32,7 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+    navx.zeroYaw();
   }
 
   /**
@@ -64,6 +65,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
         // schedule the autonomous command (example)
       //new IntakeBalls(m_robotContainer.queueSub).schedule();
+      navx.zeroYaw();
       if (m_autonomousCommand != null) {
         m_autonomousCommand.schedule();}
       

@@ -1,5 +1,12 @@
 [
   {
+    "artifact": "frcJava (in project TrajectoryDriveCode Generated Path)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "TrajectoryDriveCode Generated Path",
+    "language": "java"
+  },
+  {
     "artifact": "frcJava (in project TrajectoryDriveCode)",
     "target": "roborio",
     "debugfile": "frcJava_roborio.debugconfig",

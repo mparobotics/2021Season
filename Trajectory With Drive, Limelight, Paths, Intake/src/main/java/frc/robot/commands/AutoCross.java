@@ -19,8 +19,8 @@ public class AutoCross extends CommandBase {
   /**
    * Creates a new AutoDriveToWall.
    */
-  public AutoCross(DriveTrain drive) {
-    m_driveSub = drive;
+  public AutoCross(DriveTrain driveSub) {
+    m_driveSub = driveSub;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(m_driveSub);
   }
@@ -28,23 +28,21 @@ public class AutoCross extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    WPI_TalonFX leftFront = new WPI_TalonFX(DriveConstants.LeftFront);
-    while (leftFront.getSelectedSensorPosition() < 2500) {
-      m_driveSub.setDriveSpeed_Arcade(1, 1);
-      }
-    while (leftFront.getSelectedSensorPosition() > 0)
-     {m_driveSub.setDriveSpeed_Arcade(-1, -1);}
-   
-     m_driveSub.setDriveSpeed_Arcade(0, 0);
-
-
-
     }
+
 
 // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveSub.setDriveSpeed_Arcade(.5, 0);
+   // m_driveSub.setDriveSpeed_Arcade(.5, 0);
+   WPI_TalonFX leftFront = new WPI_TalonFX(DriveConstants.LeftFront);
+   while (leftFront.getSelectedSensorPosition() < 2500) {
+     m_driveSub.setDriveSpeed_Arcade(1, 0);
+     }
+   while (leftFront.getSelectedSensorPosition() > 0)
+    {m_driveSub.setDriveSpeed_Arcade(1, 0);}
+  
+    m_driveSub.setDriveSpeed_Arcade(0, 0);
   }
 
   // Called once the command ends or is interrupted.

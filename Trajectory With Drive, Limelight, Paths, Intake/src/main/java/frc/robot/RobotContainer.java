@@ -16,7 +16,7 @@ import frc.robot.autocommands.RunGalRedA;
 import frc.robot.autocommands.RunGalRedB;
 import frc.robot.autocommands.RunSlalom;
 import frc.robot.autocommands.RunGalSearchA;
-
+import frc.robot.autocommands.RunGalSearchB;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.QueueSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -42,7 +42,7 @@ public class RobotContainer {
     autoChooser.addOption("Slalom", new RunSlalom(drive));
     autoChooser.addOption("Bounce", new RunBounce(drive));
     autoChooser.addOption("Galactic Search 1", new RunGalSearchA(drive, queueSub));
-    autoChooser.addOption("Galactic Search 2", new RunGalSearchA(drive, queueSub));
+    autoChooser.addOption("Galactic Search 2", new RunGalSearchB(drive, queueSub));
     autoChooser.addOption("GalRedA", new RunGalRedA(drive));
     autoChooser.addOption("GalRedB", new RunGalRedB(drive));
     autoChooser.addOption("GalBlueA", new RunGalBlueA(drive));
