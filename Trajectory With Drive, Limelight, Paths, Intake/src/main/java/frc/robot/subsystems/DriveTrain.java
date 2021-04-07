@@ -4,10 +4,12 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.*;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.SerialPort;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
@@ -27,8 +29,11 @@ WPI_TalonFX rightRear = new WPI_TalonFX(DriveConstants.RightRear);
 SpeedControllerGroup leftSide = new SpeedControllerGroup(leftFront, leftRear);
 SpeedControllerGroup rightSide = new SpeedControllerGroup(rightFront, rightRear);
 DifferentialDrive drive = new DifferentialDrive(leftSide, rightSide);
-static final byte navx_rate = 127;
+static final byte navx_rate = 50;
+
 AHRS navx = new AHRS(SPI.Port.kMXP, navx_rate);
+//AHRS navx = new AHRS(I2C.Port.kMXP);
+//AHRS navx = new AHRS(SerialPort.Port.kOnboard);
 DifferentialDriveOdometry odometry;
 
 
@@ -57,6 +62,7 @@ DifferentialDriveOdometry odometry;
     SmartDashboard.putNumber("my Heading:",getHeading());
     SmartDashboard.putNumber("my leftEnc:",leftFront.getSelectedSensorPosition());
     SmartDashboard.putNumber("my rightEnc:",rightFront.getSelectedSensorPosition());
+    //navx.enableLogging(true);
   }
 
   public Pose2d getPose(){

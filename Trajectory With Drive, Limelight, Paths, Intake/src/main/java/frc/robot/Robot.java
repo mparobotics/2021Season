@@ -7,9 +7,10 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
-
+import edu.wpi.first.wpilibj.SerialPort;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.I2C;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -22,8 +23,12 @@ public class Robot extends TimedRobot {
   public static RobotContainer m_robotContainer;
 
   AHRS navx = new AHRS(SPI.Port.kMXP);
+  //HRS navx = new AHRS(I2C.Port.kMXP);
+  //AHRS navx = new AHRS(SerialPort.Port.kUSB);
+
 
   /**
+   *
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
    */

@@ -1,16 +1,16 @@
 [
   {
+    "artifact": "frcJava (in project TrajectoryDriveCode)",
+    "target": "roborio",
+    "debugfile": "frcJava_roborio.debugconfig",
+    "project": "TrajectoryDriveCode",
+    "language": "java"
+  },
+  {
     "artifact": "frcJava (in project Trajectory With Drive, Limelight, Paths, Intake)",
     "target": "roborio",
     "debugfile": "frcJava_roborio.debugconfig",
     "project": "Trajectory With Drive, Limelight, Paths, Intake",
-    "language": "java"
-  },
-  {
-    "artifact": "frcJava (in project TrajectoryDriveCode With Limelight and Falling Intake)",
-    "target": "roborio",
-    "debugfile": "frcJava_roborio.debugconfig",
-    "project": "TrajectoryDriveCode With Limelight and Falling Intake",
     "language": "java"
   },
   {
@@ -21,10 +21,10 @@
     "language": "java"
   },
   {
-    "artifact": "frcJava (in project TrajectoryDriveCode)",
+    "artifact": "frcJava (in project TrajectoryDriveCode With Limelight and Falling Intake)",
     "target": "roborio",
     "debugfile": "frcJava_roborio.debugconfig",
-    "project": "TrajectoryDriveCode",
+    "project": "TrajectoryDriveCode With Limelight and Falling Intake",
     "language": "java"
   }
 ]
