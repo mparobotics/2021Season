@@ -7,7 +7,6 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
@@ -17,10 +16,10 @@ import frc.robot.commands.DriveManually;
 
 public class DriveSubsystem extends SubsystemBase {
   //instantiate new motor control objects
-  private final WPI_TalonSRX leftBack = new WPI_TalonSRX(ConstantsMap.FALCON_BL_ID); 
-  private final WPI_TalonSRX leftFront = new WPI_TalonSRX(ConstantsMap.FALCON_FL_ID); 
-  private final WPI_TalonSRX rightBack = new WPI_TalonSRX(ConstantsMap.FALCON_BR_ID); 
-  private final WPI_TalonSRX rightFront = new WPI_TalonSRX(ConstantsMap.FALCON_FR_ID); 
+  private final WPI_TalonFX leftBack = new WPI_TalonFX(ConstantsMap.FALCON_BL_ID); 
+  private final WPI_TalonFX leftFront = new WPI_TalonFX(ConstantsMap.FALCON_FL_ID); 
+  private final WPI_TalonFX rightBack = new WPI_TalonFX(ConstantsMap.FALCON_BR_ID); 
+  private final WPI_TalonFX rightFront = new WPI_TalonFX(ConstantsMap.FALCON_FR_ID); 
 
 
   private final SpeedControllerGroup SCG_R = new SpeedControllerGroup(rightFront, rightBack); 

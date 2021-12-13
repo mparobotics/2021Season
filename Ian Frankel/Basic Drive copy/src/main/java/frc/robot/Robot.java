@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
-  
+    Container.m_gyro.setSensitivity(ConstantsMap.kVoltsPerDegreePerSecond);
   }
 
   /** This function is called periodically during operator control. */

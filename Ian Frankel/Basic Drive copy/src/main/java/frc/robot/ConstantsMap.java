@@ -27,12 +27,11 @@ public final class ConstantsMap {
     public static final int GyroPort = 0;
     public static final double kVoltsPerDegreePerSecond = 0.0328;
     public static final double kAngleSetpoint = 0.0;
-    public static final int FALCON_FR_ID = 3;
-    public static final int FALCON_BR_ID = 9;
-    public static final int FALCON_FL_ID = 7;
-    public static final int FALCON_BL_ID = 8;
-    public static float Kp = 0.033f; //to fix 
-    public static float min_command = 0.033f; //to fix?
+    public static final double kP = 0.005;
+    public static final int FALCON_FR_ID = 44;
+    public static final int FALCON_BR_ID = 41;
+    public static final int FALCON_FL_ID = 43;
+    public static final int FALCON_BL_ID = 42;
     //Controller stuff
 
 

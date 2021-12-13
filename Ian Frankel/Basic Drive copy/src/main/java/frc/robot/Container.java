@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.AnalogGyro;
 import edu.wpi.first.wpilibj.GenericHID;
 
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.commands.DriveForward;
 
-import frc.robot.commands.lookForTarget;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
@@ -23,7 +23,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
  */
 public class Container {
   public XboxController m_driverController = new XboxController(0);
-
+  public static AnalogGyro m_gyro = new AnalogGyro(ConstantsMap.GyroPort);
 
   // The robot's subsystems and commands are defined here...
   
@@ -45,7 +45,7 @@ public class Container {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    new JoystickButton(m_driverController, Button.kA.value).whenHeld(new lookForTarget());
+    new JoystickButton(m_driverController, Button.kBumperLeft.value).whenHeld(new DriveForward());
 
   }
 
