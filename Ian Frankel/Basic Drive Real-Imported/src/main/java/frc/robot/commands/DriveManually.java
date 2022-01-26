@@ -6,15 +6,16 @@ package frc.robot.commands;
 
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Container;
 import frc.robot.Robot;
+import frc.robot.subsystems.DriveSubsystem;
 
 
 public class DriveManually extends CommandBase {
   /** Creates a new DriveManually. */
-  public DriveManually() {
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.driveSubsystem);
-  }
+  public DriveManually(DriveSubsystem drive) {
+    addRequirements(drive);
+ }
  
   // Called when the command is initially scheduled.
   @Override
@@ -25,7 +26,7 @@ public class DriveManually extends CommandBase {
   //actually runs subsystem
   public void execute() {
     double leftStick = -Robot.m_robotContainer.m_driverController.getLeftY();
-    double rightStick = -Robot.m_robotContainer.m_driverController.getRightY();
+    double rightStick = Robot.m_robotContainer.m_driverController.getRightY();
     Robot.driveSubsystem.teleop(leftStick, rightStick);
   }
 

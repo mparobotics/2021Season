@@ -28,14 +28,14 @@ public class Container {
 
   // The robot's subsystems and commands are defined here...
   public DriveSubsystem DriveSub = new DriveSubsystem();
-  public DriveManually DriveMan = new DriveManually();
+  public DriveManually DriveMan = new DriveManually(DriveSub);
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public Container() {
     
     configureButtonBindings();
-    DriveSub.setDefaultCommand(new DriveManually ());
+    DriveSub.setDefaultCommand(new DriveManually (DriveSub));
 
 
   }
