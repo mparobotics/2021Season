@@ -40,7 +40,7 @@ public class lookForTarget extends CommandBase {
     if (tv != 1) {tapeFound = false;}
     else {tapeFound = true;}
     SmartDashboard.putBoolean("limelight vision", tapeFound);
-    if (tapeFound = true){
+    if (tapeFound == true){
       //Robot.driveSubsystem.teleop(0, 0);
       double heading_error = tx; //needs inverting?
       double steering_adjust = 0.0f;
